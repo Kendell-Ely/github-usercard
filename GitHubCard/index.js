@@ -1,9 +1,10 @@
+import axios from 'axios';
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
-
+const myUserInfo = axios.get('https://api.github.com/users/Kendell-Ely')
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -49,7 +50,76 @@ const followersArray = [];
       </div>
     </div>
 */
+function cardMaker(userCard){
+  const card = document.createElement('div')
+  const userImg = document.createElement('img')
+  const cardInfo = document.createElement('div')
+  const name = document.createElement('h3')
+  const username = document.createElement('p')
+  const location = document.createElement('p')
+  const profile = document.createElement('p')
+  const href = document.createElement('a')
+  const followers = document.createElement('p')
+  const following = document.createElement('p')
+  const bio = document.createElement('p')
 
+  card.classList.add('card')
+  cardInfo.classList.add('card-info')
+  name.classList.add('name')
+  username.classList.add('username')
+
+  card.appendChild(userImg)
+  card.appendChild(cardInfo)
+  cardInfo.appendChild(name)
+  cardInfo.appendChild(username)
+  cardInfo.appendChild(location)
+  cardInfo.appendChild(profile)
+  profile.appendChild(href)
+  cardInfo.appendChild(followers)
+  cardInfo.appendChild(following)
+  cardInfo.appendChild(bio)
+
+  location.textContent = 'Location: '
+  profile.textContent = 'Profile: '
+  followers.textContent = 'Followers: '
+  following.textContent = 'Following: '
+  bio.textContent = 'Bio: '
+
+  axios.get('https://api.github.com/users/Kendell-Ely')
+  .then(({data}) => {
+      const userImg = data.avatar_url
+      const name = data.name
+      const username = data.login
+      const location = data.location
+      const href = data.url
+      const followers = data.followers
+      const following = data.following
+      const bio = data.bio
+
+    
+//console.log(myUserInfo)
+      
+
+  })
+  .catch(err => console.log(err))
+
+
+
+
+//  console.log(myUserInfo)
+//   axios.get('https://api.github.com/users/Kendell-Ely')
+//   .then(({data}) => {
+//       console.log(data.avatar_url)
+
+//   })
+
+  //console.log(card)
+
+
+  return card
+}
+
+cardMaker()
 /*
   List of LS Instructors Github username's:
     tetondan
