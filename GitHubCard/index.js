@@ -50,7 +50,12 @@ const followersArray = [];
       </div>
     </div>
 */
-function cardMaker(userCard){
+const cards = document.querySelector('.cards')
+cards.appendChild(cardMaker(obj))
+
+
+function cardMaker(obj){
+ 
   const card = document.createElement('div')
   const userImg = document.createElement('img')
   const cardInfo = document.createElement('div')
@@ -79,45 +84,35 @@ function cardMaker(userCard){
   cardInfo.appendChild(following)
   cardInfo.appendChild(bio)
 
-  location.textContent = 'Location: '
-  profile.textContent = 'Profile: '
-  followers.textContent = 'Followers: '
-  following.textContent = 'Following: '
-  bio.textContent = 'Bio: '
+  location.textContent = `Location: ${location}` 
+  profile.textContent = `Profile: ${href} `
+  followers.textContent = `Followers: ${followers}`
+  following.textContent = `Following: ${following}`
+  bio.textContent = `Bio: ${bio}`
 
-  axios.get('https://api.github.com/users/Kendell-Ely')
+
+
+  return card
+}
+
+
+axios.get('https://api.github.com/users/Kendell-Ely')
   .then(({data}) => {
-      const userImg = data.avatar_url
+      const user = data.avatar_url
       const name = data.name
       const username = data.login
       const location = data.location
       const href = data.url
       const followers = data.followers
-      const following = data.following
+      const following= data.following
       const bio = data.bio
-
     
-//console.log(myUserInfo)
-      
-
+    
   })
   .catch(err => console.log(err))
 
 
-
-
-//  console.log(myUserInfo)
-//   axios.get('https://api.github.com/users/Kendell-Ely')
-//   .then(({data}) => {
-//       console.log(data.avatar_url)
-
-//   })
-
-  //console.log(card)
-
-
-  return card
-}
+ 
 
 cardMaker()
 /*
